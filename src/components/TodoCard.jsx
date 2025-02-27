@@ -1,8 +1,10 @@
 import React from 'react'
 
-const TodoCard = (handleAdd) => {
+const TodoCard = ({ Title }) => {
     return (
-        <div>TodoCard</div>
+        <div>
+            {Title}
+        </div>
     )
 }
 
