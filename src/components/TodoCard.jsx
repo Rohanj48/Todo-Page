@@ -12,17 +12,29 @@ const TodoCard = ({ Title, handleTodoCardChecked }) => {
         setDone(!done);
         handleTodoCardChecked(Title.id);
     }
-    return (
-        <div className="p-2 m-4 bg-gray-200 rounded list-none text-xl flex items-center justify-between">
-            {Title.title}
-            <button className='font-extrabold text-3xl' type="button"
-                onClick={handleCheck}>
-                {Title.stat == 0 && < MdOutlineCheckBoxOutlineBlank />}
-                {Title.stat == 1 && <MdOutlineCheckBox />}
 
-            </button>
-        </div>
-    )
+    if (Title.stat == 0)
+        return (
+            <div className="p-2 m-4 bg-gray-200 rounded list-none text-xl flex items-center justify-between">
+                {Title.title}
+                <button className='font-extrabold text-3xl' type="button"
+                    onClick={handleCheck}>
+                    < MdOutlineCheckBoxOutlineBlank />
+
+
+                </button>
+            </div>);
+    else
+        return (
+            <div className="p-2 m-4 bg-gray-200 rounded list-none  line-through text-xl flex items-center justify-between text-gray-400 ">
+                {Title.title}
+                <button className='font-extrabold text-3xl' type="button"
+                    onClick={handleCheck}>
+
+                    <MdOutlineCheckBox />
+
+                </button>
+            </div>);
 }
 
 export default TodoCard
