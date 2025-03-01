@@ -13,7 +13,8 @@ function App() {
     // {
     //     id :  fdsds ,
     //     title: "name",
-    //     stat:"1 or 0"
+    //     stat:"1 or 0",
+    //     progress : 0 - not started , 1 - in progress
     // }
 
     useEffect(() => {
@@ -37,7 +38,7 @@ function App() {
 
     // adds tittle of the data to tittles array
     const addTittle = (data) => {
-        setTitles([...titles, { id: uuidv4(), title: data, stat: 0 }]);
+        setTitles([...titles, { id: uuidv4(), title: data, stat: 0, progress: 0 }]);
     }
 
     // handles what happens when a task is added
@@ -72,6 +73,21 @@ function App() {
 
     }
 
+    const handleTodoCardProgressToggle = (id) => {
+
+        setTitles((oldTitles) => {
+            return oldTitles.map((title) => {
+                if (title.id === id) {
+                    console.log(title.title);
+                    return { ...title, progress: !title.progress };
+                }
+                else return title;
+            })
+        })
+
+        console.log(titles)
+    }
+
     return (
         <>
             <Navbar toggle={togglePopup} />
@@ -79,17 +95,18 @@ function App() {
 
             {popupActive && <Popup toggle={togglePopup} handleAdd={handleAdd} />}
             <div className='flex'>
-                <h1 className='text-xl m-4'> Upcomming  </h1>
+                <h1 className='text-xl mx-5  m-4'> Upcomming  </h1>
 
             </div>
             {titles.map((title, index) => (
                 title.stat == 0 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked}
-                    handleTodoCardDelete={handleTodoCardDelete} /> : null
+                    handleTodoCardDelete={handleTodoCardDelete}
+                    handleTodoCardProgressToggle={handleTodoCardProgressToggle} /> : null
             ))}
 
             <hr />
             <div className='flex'>
-                <h1 className='text-xl m-4'> Completed  </h1>
+                <h1 className='text-xl mx-5 m-4'> Completed  </h1>
 
             </div>
 

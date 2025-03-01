@@ -2,9 +2,12 @@ import React from 'react'
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { MdOutlineCheckBox } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { FaCircle } from "react-icons/fa";
 import { useState } from 'react';
+import { TiBatteryLow } from 'react-icons/ti';
 
-const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete }) => {
+
+const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete, handleTodoCardProgressToggle }) => {
 
     const [done, setDone] = useState(false);
 
@@ -19,7 +22,26 @@ const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete }) => {
 
                 {Title.title}
 
-                <div className='flex align-middle text-3xl'>
+                <div className='flex align-middle text-3xl gap-x-2'>
+
+                    {!Title.progress ?
+                        (
+                            <button onClick={() => handleTodoCardProgressToggle(Title.id)}>
+                                <div className="bg-white text-red-800 rounded-2xl text-sm p-1 px-2 flex items-center gap-x-1 transition-transform duration-200 hover:scale-105">
+                                    <FaCircle />
+                                    Not Started
+                                </div>
+                            </button>
+                        ) :
+                        (
+                            <button onClick={() => handleTodoCardProgressToggle(Title.id)}>
+                                <div className="bg-white text-orange-500 rounded-2xl text-sm p-1 px-2 flex items-center gap-x-1 transition-transform duration-200 hover:scale-105 animate-pulse">
+                                    <FaCircle />
+                                    In Progress
+                                </div>
+                            </button>
+                        )}
+
 
                     <button onClick={() => { handleTodoCardDelete(Title.id) }}>
                         <MdDelete className='text-red-800 transition-transform duration-200 hover:scale-120' />
@@ -38,7 +60,7 @@ const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete }) => {
 
                 {Title.title}
 
-                <div className='flex align-middle text-3xl'>
+                <div className='flex align-middle text-3xl gap-x-2'>
 
                     <button onClick={() => { handleTodoCardDelete(Title.id) }}>
                         <MdDelete className='text-red-800 transition-transform duration-200 hover:scale-120' />
