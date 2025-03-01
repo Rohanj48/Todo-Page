@@ -43,6 +43,7 @@ function App() {
     // handles what happens when a task is added
     const handleAdd = (data) => {
         console.log(data);
+
         // code to clear the local titles
         // setTitles([]);
         // localStorage.removeItem("titles");
@@ -51,9 +52,13 @@ function App() {
         togglePopup();
     };
 
+    const handleTodoCardDelete = (id) => {
+
+        setTitles((oldTitles) => oldTitles.filter((title) => title.id !== id));
+    }
+
     const handleTodoCardChecked = (id) => {
 
-        console.log(titles);
         // updaataes the stat of id 
         setTitles((oldTitles) => {
             return oldTitles.map((title) => {
@@ -64,7 +69,7 @@ function App() {
                 else return title;
             })
         })
-        console.log(titles);
+
     }
 
     return (
@@ -73,11 +78,15 @@ function App() {
             {popupActive && <Popup toggle={togglePopup} handleAdd={handleAdd} />}
 
             {titles.map((title, index) => (
-                title.stat == 0 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked} /> : null
+                title.stat == 0 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked}
+                    handleTodoCardDelete={handleTodoCardDelete} /> : null
             ))}
+
             <hr />
+
             {titles.map((title, index) => (
-                title.stat == 1 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked} /> : null
+                title.stat == 1 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked}
+                    handleTodoCardDelete={handleTodoCardDelete} /> : null
             ))}
 
         </>

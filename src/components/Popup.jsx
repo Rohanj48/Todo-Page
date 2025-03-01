@@ -11,7 +11,6 @@ const Popup = ({ toggle, handleAdd }) => {
     const addClicked = () => {
         if (title.length > 0) {
             handleAdd(title);
-
         }
     }
 
