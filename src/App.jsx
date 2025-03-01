@@ -75,14 +75,23 @@ function App() {
     return (
         <>
             <Navbar toggle={togglePopup} />
-            {popupActive && <Popup toggle={togglePopup} handleAdd={handleAdd} />}
 
+
+            {popupActive && <Popup toggle={togglePopup} handleAdd={handleAdd} />}
+            <div className='flex'>
+                <h1 className='text-xl m-4'> Upcomming  </h1>
+
+            </div>
             {titles.map((title, index) => (
                 title.stat == 0 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked}
                     handleTodoCardDelete={handleTodoCardDelete} /> : null
             ))}
 
             <hr />
+            <div className='flex'>
+                <h1 className='text-xl m-4'> Completed  </h1>
+
+            </div>
 
             {titles.map((title, index) => (
                 title.stat == 1 ? <TodoCard key={title.id} Title={title} handleTodoCardChecked={handleTodoCardChecked}

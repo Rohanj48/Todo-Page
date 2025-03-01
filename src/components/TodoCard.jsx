@@ -15,7 +15,7 @@ const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete }) => {
 
     if (Title.stat == 0)
         return (
-            <div className="p-2 m-4 bg-gray-200 rounded list-none text-xl flex items-center justify-between ">
+            <div className="p-2 m-4 bg-gray-200 rounded list-none text-xl flex items-center justify-between transition-transform duration-200 hover:scale-101">
 
                 {Title.title}
 
@@ -34,7 +34,7 @@ const TodoCard = ({ Title, handleTodoCardChecked, handleTodoCardDelete }) => {
             </div>);
     else
         return (
-            <div className="p-2 m-4 bg-gray-200 rounded list-none  line-through text-xl flex items-center justify-between text-gray-400">
+            <div className="p-2 m-4 bg-gray-200 rounded list-none  line-through text-xl flex items-center justify-between text-gray-400 transition-transform duration-200 hover:scale-101">
 
                 {Title.title}
 
