@@ -75,7 +75,7 @@ function App() {
     return (
         <>
             <Navbar toggle={togglePopup} />
-
+            <hr></hr>
 
             {popupActive && <Popup toggle={togglePopup} handleAdd={handleAdd} />}
             <div className='flex'>
