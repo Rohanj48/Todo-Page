@@ -9,7 +9,10 @@ const Popup = ({ toggle, handleAdd }) => {
     const [title, setTitle] = useState('');
 
     const addClicked = () => {
-        handleAdd(title);
+        if (title.length > 0) {
+            handleAdd(title);
+
+        }
     }
 
     return (
@@ -23,7 +26,8 @@ const Popup = ({ toggle, handleAdd }) => {
             <input name="Title" value={title} onChange={e => setTitle(e.target.value)}
                 className="bg-white text-black p-2 w-full " placeholder='Title' />
             <div className='flex  justify-end my-4 gap-x-4 '>
-                <button className='text-white bg-slate-900 p-2 rounded-2xl flex items-center gap-2 text-md' >
+                <button className='text-white bg-slate-900 p-2 rounded-2xl flex items-center gap-2 text-md'
+                    onClick={toggle} >
                     <FiFilePlus />
                     Cancel
                 </button>
