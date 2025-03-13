@@ -11,7 +11,7 @@ const TodoCard = (todoItem) => {
 
 
     return (
-        <div className='bg-white m-2 rounded-lg border-2 border-gray-100 text-xl'>
+        <div className='bg-white m-2 rounded-lg border-2 border-gray-100 text-xl pl-4 text-lg'>
             TodoCard
         </div>
     )
