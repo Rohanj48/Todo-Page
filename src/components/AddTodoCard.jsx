@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FiPlus, FiMinus } from "react-icons/fi";
 import { v4 as uuidv4 } from 'uuid';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,7 +23,7 @@ const AddTodoCard = ({ handleAddTask }) => {
         const newTodo = {
             id: uuidv4(),
             title,
-            status: 0,
+            status: false,
             progress,
             priority,
             createdAt,
@@ -53,8 +53,13 @@ const AddTodoCard = ({ handleAddTask }) => {
     };
 
     return (
-        <div className='bg-white m-2 rounded-lg border-2 border-gray-300 text-xl transition-all duration-200 hover:scale-101 p-0.5'>
-            <div className='flex justify-between px-4'>
+        <div className='bg-white m-2 items-center rounded-lg border-2 border-gray-300 text-xl transition-all duration-200 hover:scale-101  '>
+
+            <div className='flex'>
+                <button className="px-2.5   text-gray-700"
+                    onClick={toggleExpand} >
+                    {isExpanded ? <FiMinus className='transition-all duration-200 hover:scale-115 text-xl' /> : <FiPlus className='transition-all duration-200 hover:scale-115 text-xl' />}
+                </button>
                 {isExpanded ? (
                     <input
                         type="text"
@@ -68,10 +73,7 @@ const AddTodoCard = ({ handleAddTask }) => {
                     <span className="font-medium text-lg text-gray-500">Add Todo</span>
                 )}
 
-                <button className="px-2 transition-all duration-200 hover:scale-110 font-light text-gray-400"
-                    onClick={toggleExpand} >
-                    {isExpanded ? <FaMinus /> : <FaPlus />}
-                </button>
+
             </div>
 
             {isExpanded && (

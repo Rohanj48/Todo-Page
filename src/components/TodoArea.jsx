@@ -49,15 +49,16 @@ const TodoArea = () => {
 
     const handleTodoCardChecked = (id) => {
         // updaataes the stat of id 
-        setTodoItems((oldTitles) => {
-            return oldTitles.map((title) => {
-                if (title.id == id) {
-                    let oldstat = title.stat;
-                    return { ...title, stat: !oldstat };
+        setTodoItems((oldTodos) => {
+            return oldTodos.map((todo) => {
+                if (todo.id == id) {
+                    let oldstatus = todo.status;
+                    return { ...todo, status: !oldstatus };
                 }
-                else return title;
+                else return todo;
             })
         })
+        console.log(todoItems)
 
     }
 
@@ -81,17 +82,33 @@ const TodoArea = () => {
 
     return (
         <div className=' max-w-2xl md:max-w-7xl mx-auto'>
-
-            {todoItems.map((todo) => (
-                <TodoCard
-                    key={todo.id}
-                    id={todo.id}
-                    todoItem={todo}
-                    handleTodoCardDelete={handleTodoCardDelete}
-                />
-            ))}
-
-            <AddTodoCard handleAddTask={handleAddTask} />
+            <div>
+                {todoItems
+                    .filter((todo) => todo.status === false)
+                    .map((todo) => (
+                        <TodoCard
+                            key={todo.id}
+                            id={todo.id}
+                            todoItem={todo}
+                            handleTodoCardDelete={handleTodoCardDelete}
+                            handleTodoCardChecked={handleTodoCardChecked}
+                        />
+                    ))}
+                <AddTodoCard handleAddTask={handleAddTask} />
+            </div>
+            <div className='border-t-2 border-gray-700 mt-5'>
+                {todoItems
+                    .filter((todo) => todo.status === true)
+                    .map((todo) => (
+                        <TodoCard
+                            key={todo.id}
+                            id={todo.id}
+                            todoItem={todo}
+                            handleTodoCardDelete={handleTodoCardDelete}
+                            handleTodoCardChecked={handleTodoCardChecked}
+                        />
+                    ))}
+            </div>
         </div>
     )
 }
