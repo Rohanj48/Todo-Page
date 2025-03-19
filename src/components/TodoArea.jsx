@@ -32,6 +32,7 @@ const TodoArea = () => {
         if (items) {
             setTodoItems(items);
         }
+        // localStorage.removeItem("todoItems");
     }, []);
 
     // adds tittle of the data to tittles array
@@ -60,6 +61,11 @@ const TodoArea = () => {
 
     }
 
+    const handleAddTask = (data) => {
+        setTodoItems((prevTodoItems) => [...prevTodoItems, data]);
+        console.log(todoItems);
+    };
+
     const handleTodoCardProgressToggle = (id) => {
         setTodoItems((oldTitles) => {
             return oldTitles.map((title) => {
@@ -74,11 +80,18 @@ const TodoArea = () => {
     }
 
     return (
-        <div className='bg-green-100 max-w-2xl md:max-w-7xl mx-auto'>
-            <TodoCard />
-            <TodoCard />
-            <TodoCard />
-            <AddTodoCard />
+        <div className=' max-w-2xl md:max-w-7xl mx-auto'>
+
+            {todoItems.map((todo) => (
+                <TodoCard
+                    key={todo.id}
+                    id={todo.id}
+                    todoItem={todo}
+                    handleTodoCardDelete={handleTodoCardDelete}
+                />
+            ))}
+
+            <AddTodoCard handleAddTask={handleAddTask} />
         </div>
     )
 }

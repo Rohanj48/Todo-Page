@@ -3,6 +3,8 @@ import { FiFilePlus } from "react-icons/fi";
 
 const Navbar = ({ toggle }) => {
 
+
+
     return (
         <div className='flex justify-between my-4 align-middle items-center border-b-2 border-gray-400'>
             <h1 className='text-6xl text-black m-4 ' > Todo...</h1>
