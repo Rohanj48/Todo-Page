@@ -2,11 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import TodoCard from './TodoCard';
 import AddTodoCard from './AddTodoCard';
-
-
+import { FaSortAmountDown } from "react-icons/fa";
+import { IoMdArrowDown } from "react-icons/io";
 const TodoArea = () => {
 
     const [todoItems, setTodoItems] = useState([]); // array with alll the todo items
+    const [sortMode, setSortMode] = useState("Priority");
+
     // {
     //     id :  fdsds ,
     //     title: "name",
@@ -80,8 +82,41 @@ const TodoArea = () => {
 
     }
 
+
+
+    const sortClick = () => {
+        const priorityOrder = { high: 1, medium: 2, low: 3 };
+
+        setTodoItems((prevTodos) => {
+            const sortedTodos = [...prevTodos].slice().sort((a, b) =>
+                sortMode === "Priority"
+                    ? priorityOrder[a.priority] - priorityOrder[b.priority]
+                    : new Date(a.dueDate) - new Date(b.dueDate)
+            );
+            return sortedTodos;
+        });
+
+        setSortMode((prevMode) => (prevMode === "Priority" ? "Due Date" : "Priority"));
+
+    };
+    useEffect(() => {
+        console.log("Updated Todos:", todoItems);
+    }, [todoItems]);
+
+
     return (
         <div className=' max-w-2xl md:max-w-7xl mx-auto'>
+            <div className='flex mx-3 space-x-1 items-center'>
+                <div className='flex items-center text-sm text-gray-600' onClick={sortClick}>
+                    <FaSortAmountDown />
+                    <span className='mx-1 font-bold'> {sortMode} </span>
+                </div>
+                |
+                <div className='flex items-center text-xl text-gray-600 ml-1'>
+                    <IoMdArrowDown />
+                </div>
+
+            </div>
             <div>
                 {todoItems
                     .filter((todo) => todo.status === false)

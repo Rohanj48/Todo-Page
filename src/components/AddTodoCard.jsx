@@ -106,7 +106,7 @@ const AddTodoCard = ({ handleAddTask }) => {
                         <div className='flex space-x-1 text-sm px-2'>
                             <div
                                 className={`flex items-center ps-3 border-2 rounded-lg pr-2 
-            ${priority === "high" ? "bg-red-100 border-red-500 text-red-800" : ""}`}
+                                            ${priority === "high" ? "bg-red-100 border-red-500 text-red-800" : ""}`}
                             >
                                 <input
                                     type="radio"
@@ -121,7 +121,7 @@ const AddTodoCard = ({ handleAddTask }) => {
 
                             <div
                                 className={`flex items-center ps-3 border-2 rounded-lg pr-2 
-            ${priority === "medium" ? "bg-orange-100 border-orange-500 text-orange-800" : ""}`}
+                                        ${priority === "medium" ? "bg-orange-100 border-orange-500 text-orange-800" : ""}`}
                             >
                                 <input
                                     type="radio"
@@ -136,7 +136,7 @@ const AddTodoCard = ({ handleAddTask }) => {
 
                             <div
                                 className={`flex items-center ps-3 border-2 rounded-lg pr-2 
-            ${priority === "low" ? "bg-blue-100 border-blue-500 text-blue-800" : ""}`}
+                                             ${priority === "low" ? "bg-blue-100 border-blue-500 text-blue-800" : ""}`}
                             >
                                 <input
                                     type="radio"
