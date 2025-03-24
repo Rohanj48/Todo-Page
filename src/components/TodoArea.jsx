@@ -35,6 +35,7 @@ const TodoArea = () => {
             setTodoItems(items);
         }
         // localStorage.removeItem("todoItems");
+        setSortMode(JSON.parse(localStorage.getItem('sortMode')));
     }, []);
 
     // adds tittle of the data to tittles array
@@ -82,27 +83,26 @@ const TodoArea = () => {
 
     }
 
-
-
     const sortClick = () => {
         const priorityOrder = { high: 1, medium: 2, low: 3 };
 
         setTodoItems((prevTodos) => {
             const sortedTodos = [...prevTodos].slice().sort((a, b) =>
-                sortMode === "Priority"
+                sortMode === "Time"
                     ? priorityOrder[a.priority] - priorityOrder[b.priority]
-                    : new Date(a.dueDate) - new Date(b.dueDate)
+                    : new Date(a.createdAt) - new Date(b.createdAt)
             );
             return sortedTodos;
         });
 
-        setSortMode((prevMode) => (prevMode === "Priority" ? "Due Date" : "Priority"));
+        setSortMode((prevMode) => (prevMode === "Priority" ? "Time" : "Priority"));
+        localStorage.setItem('sortMode', JSON.stringify(sortMode));
 
     };
+
     useEffect(() => {
         console.log("Updated Todos:", todoItems);
     }, [todoItems]);
-
 
     return (
         <div className=' max-w-2xl md:max-w-7xl mx-auto'>
